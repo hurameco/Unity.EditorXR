@@ -33,6 +33,7 @@ namespace HC.EditorXR.Modules.Authentication.Menu
         private static LogOutScreen _instance;
 
 
+        [SerializeField] private Button _closeButton;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _alphaFadeTime = 0.5f;
         [SerializeField] private TextMeshProUGUI _informationText;
@@ -48,25 +49,32 @@ namespace HC.EditorXR.Modules.Authentication.Menu
                 Destroy(this.gameObject);
                 return;
             }
+
             _instance = this;
 
             base.Awake();
 
+            Assert.IsNotNull(_closeButton);
             Assert.IsNotNull(_canvasGroup);
             Assert.IsNotNull(_informationText);
             Assert.IsNotNull(_logOutButton);
             Assert.IsNotNull(_CancelButton);
 
             _canvasGroup.alpha = 0f;
-                LeanTween.alphaCanvas(_canvasGroup, 1, _alphaFadeTime);
-            
+            LeanTween.alphaCanvas(_canvasGroup, 1, _alphaFadeTime);
 
-            _CancelButton.onClick.AddListener(() =>
+            _closeButton.onClick.AddListener(() =>
             {
                 _instance = null;
                 LeanTween.alphaCanvas(_canvasGroup, 0, _alphaFadeTime).setOnComplete(() => Destroy(this.gameObject));
             });
             
+            _CancelButton.onClick.AddListener(() =>
+            {
+                _instance = null;
+                LeanTween.alphaCanvas(_canvasGroup, 0, _alphaFadeTime).setOnComplete(() => Destroy(this.gameObject));
+            });
+
             _logOutButton.onClick.AddListener(() =>
             {
                 _authenticationService.LogOutUser();

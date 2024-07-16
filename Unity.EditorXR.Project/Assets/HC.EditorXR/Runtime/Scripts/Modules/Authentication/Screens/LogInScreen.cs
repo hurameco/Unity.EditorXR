@@ -32,6 +32,7 @@ namespace HC.EditorXR.Modules.Authentication.Menu
     {
         private static LogInScreen _instance;
         
+        [SerializeField] private Button _closeButton;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _alphaFadeTime = 0.5f;
         [SerializeField] private TMP_InputField _usernameInputField;
@@ -52,6 +53,7 @@ namespace HC.EditorXR.Modules.Authentication.Menu
             
             base.Awake();
             
+            Assert.IsNotNull(_closeButton);
             Assert.IsNotNull(_usernameInputField);
             Assert.IsNotNull(_passwordInputField);
             Assert.IsNotNull(_rememberMeToggle);
@@ -59,6 +61,12 @@ namespace HC.EditorXR.Modules.Authentication.Menu
             
             _canvasGroup.alpha = 0f;
             LeanTween.alphaCanvas(_canvasGroup, 1, _alphaFadeTime);
+            
+            _closeButton.onClick.AddListener(()=>
+            {
+                LeanTween.alphaCanvas(_canvasGroup, 0, _alphaFadeTime).setOnComplete(() => Destroy(this.gameObject));
+                _instance = null;
+            });
             
             _loginButton.onClick.AddListener(() =>
             {
