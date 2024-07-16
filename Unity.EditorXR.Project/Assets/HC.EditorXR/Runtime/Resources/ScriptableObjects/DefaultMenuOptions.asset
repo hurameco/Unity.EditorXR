@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9df90067563436180dc320c5609c123, type: 3}
+  m_Name: DefaultMenuOptions
+  m_EditorClassIdentifier: 
+  _options:
+  - buttonTitle: Log In
+    _buttonSprite: {fileID: 21300000, guid: b96e9d0a14b86fa4f81f5f5cc071a3ac, type: 3}
+    _buttonDescription: Screen where the user can authenticate himself to use the
+      application.
+    _menuPrefab: {fileID: 1885532130688573969, guid: 7da65bdbed1bf17428e9aa1f1c8d7752, type: 3}
+    _userRole: 1
+    _onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  - buttonTitle: Log Out
+    _buttonSprite: {fileID: 21300000, guid: a9e88cf284b8ec241b869f6660c65354, type: 3}
+    _buttonDescription: Screen where the user can end his session.
+    _menuPrefab: {fileID: 447386845464106247, guid: 94399ce52e4959042811d85f332a1241, type: 3}
+    _userRole: 14
+    _onClickEvent:
+      m_PersistentCalls:
+        m_Calls: []
